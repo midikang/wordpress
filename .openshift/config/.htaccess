@@ -5,8 +5,10 @@ RewriteEngine on
 #RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
 
 # add by midi
-RewriteCond %{HTTP_HOST} ^(www\.midikang\.com)(:80)? [NC]
-RewriteRule ^(.*) http://midikang.com/$1 [R=301,L]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https 
+RewriteRule .* http://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+#RewriteCond %{HTTP_HOST} ^(www\.midikang\.com)(:80)? [NC]
+#RewriteRule ^(.*) http://midikang.com/$1 [R=301,L]
 
 # WordPress Defaults
 RewriteBase /
